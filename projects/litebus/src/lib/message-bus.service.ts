@@ -4,7 +4,7 @@ import { Listener } from './listener';
 import { Message } from './message';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { SimpleMessage } from './simple-message';
-import { MessagePriority } from './message-priority';
+import { ListenerPriority } from './listener-priority';
 
 @Injectable()
 export class MessageBusService {
@@ -13,7 +13,7 @@ export class MessageBusService {
 
     public listen(eventTypes: string[],
                   subscriptionFunc: (observable: Observable<Message<any> | SimpleMessage>) => Subscription,
-                  priority: MessagePriority = MessagePriority.Normal): string {
+                  priority: ListenerPriority = ListenerPriority.Normal): string {
         let listener = new Listener(eventTypes, subscriptionFunc, priority);
         this.listeners.push(listener);
 
@@ -21,7 +21,7 @@ export class MessageBusService {
     }
 
     public listenAll(subscriptionFunc: (observable: Observable<Message<any> | SimpleMessage>) => Subscription,
-                     priority: MessagePriority = MessagePriority.Normal): string {
+                     priority: ListenerPriority = ListenerPriority.Normal): string {
         return this.listen(['*'], subscriptionFunc, priority);
     }
 

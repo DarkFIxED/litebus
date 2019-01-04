@@ -4,19 +4,19 @@ import { Observable } from 'rxjs/internal/Observable';
 import { UUID } from 'angular2-uuid';
 import { Message } from './message';
 import { SimpleMessage } from './simple-message';
-import { MessagePriority } from './message-priority';
+import { ListenerPriority } from './listener-priority';
 
 export class Listener {
     public readonly id: string;
     public readonly eventTypes: string[];
-    public readonly priority: MessagePriority;
+    public readonly priority: ListenerPriority;
     public readonly subscription: Subscription;
 
     private readonly subject: Subject<Message<any> | SimpleMessage>;
 
     public constructor(eventTypes: string[],
                        subscriptionFunc: (observable: Observable<Message<any> | SimpleMessage>) => Subscription,
-                       priority: MessagePriority = MessagePriority.Normal) {
+                       priority: ListenerPriority = ListenerPriority.Normal) {
         this.id = UUID.UUID();
         this.eventTypes = [...eventTypes];
         this.priority = priority;

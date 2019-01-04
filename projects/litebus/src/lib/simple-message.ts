@@ -1,10 +1,10 @@
 import { Message } from './message';
-import { MessagePriority } from './message-priority';
+import { ListenerPriority } from './listener-priority';
 
 export class SimpleMessage extends Message<any> {
     constructor(name: string,
                 payload: any = undefined,
-                priority: MessagePriority = MessagePriority.Normal) {
+                priority: ListenerPriority = ListenerPriority.Normal) {
         super(name, payload, priority);
     }
 }

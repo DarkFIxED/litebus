@@ -1,6 +1,6 @@
 import {MessageBusService} from './message-bus.service';
 import {Message} from './message';
-import {MessagePriority} from './message-priority';
+import {ListenerPriority} from './listener-priority';
 
 describe('MessageBusService', () => {
     let service: MessageBusService;
@@ -26,7 +26,7 @@ describe('MessageBusService', () => {
             expect(message.name).toEqual('test');
         }));
         
-        service.publish(new Message<any>('test', {}, MessagePriority.Normal));
+        service.publish(new Message<any>('test', {}, ListenerPriority.Normal));
     });
     
     it('listenAll() creates subscription which called by any published messages', () => {
@@ -35,7 +35,7 @@ describe('MessageBusService', () => {
             expect(message.name).toEqual('test');
         }));
         
-        service.publish(new Message<any>('test', {}, MessagePriority.Normal));
+        service.publish(new Message<any>('test', {}, ListenerPriority.Normal));
     });
     
 });
