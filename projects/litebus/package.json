@@ -1,0 +1,11 @@
+{
+  "name": "litebus",
+  "description": "Lightweight message bus for angular apps",
+  "version": "0.1.0",
+  "peerDependencies": {
+    "@angular/common": "^7.1.0",
+    "@angular/core": "^7.1.0",
+    "angular2-uuid": "^1.1.1",
+    "rxjs": "^6.3.3"
+  }
+}
