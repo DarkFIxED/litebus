@@ -1,5 +1,5 @@
 # About
-Litebus is a lightweight message bus for angular apps
+Litebus is a lightweight message bus for angular apps.
 
 # Documentation
 This library provides messages exchanging between different modules with priorities mechanism. 
@@ -73,10 +73,33 @@ this.listeners.push(
 );
 ```
 
+Listen messages with high *ListenerPriority*:
+```typescript
+this.listeners.push(
+    this.messageBus.listen([MessageNames.DomainPlaceAdded],
+        (observable: Observable<Message<Place>>) => {
+            return observable.subscribe(message => this.drawPlace(message.payload));
+        }),
+        ListenerPriority.High
+);
+```
+
 Stop listen messages: 
 ```typescript
 this.messageBus.stopListen(this.listeners);
 this.listeners.splice(0, this.listeners.length);
+```
+
+Reject listened message to prevent handling with next listeners:
+```typescript
+this.listeners.push(
+    this.messageBus.listen([MessageNames.DomainPlaceAdded],
+        (observable: Observable<Message<Place>>) => {
+            return observable.subscribe(message => {
+                message.reject();
+            });
+        })
+);
 ```
 
 Publishing message:
