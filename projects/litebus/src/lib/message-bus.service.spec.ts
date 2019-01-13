@@ -38,4 +38,56 @@ describe('MessageBusService', () => {
         service.publish(new Message<any>('test', {}, ListenerPriority.Normal));
     });
     
+    it('stopListen() removes existing listener', () => {
+
+        // arrange.
+        let callsCount = 0;
+        
+        let listenerId = service.listen(['test'], observable => observable.subscribe(() => {
+            callsCount++;
+        }));
+        
+        // act.
+        service.publish(new Message<any>('test', {}, ListenerPriority.Normal));
+        service.stopListen([listenerId]);
+        service.publish(new Message<any>('test', {}, ListenerPriority.Normal));
+        
+        // assert.
+        expect(callsCount).toEqual(1);
+    });
+    
+    it('listenOnce() firing one time', () => {
+        
+        // arrange.
+        let callsCount = 0;
+        
+        service.listenOnce(['test'], observable => observable.subscribe(() => {
+            callsCount++;
+        }));
+        
+        // act.
+        service.publish(new Message<any>('test', {}, ListenerPriority.Normal));
+        service.publish(new Message<any>('test', {}, ListenerPriority.Normal));
+        
+        // assert.
+        expect(callsCount).toEqual(1);
+    });
+    
+    it('listenAllOnce() firing one time', () => {
+        
+        // arrange.
+        let callsCount = 0;
+        
+        service.listenAllOnce(observable => observable.subscribe(() => {
+            callsCount++;
+        }));
+        
+        // act.
+        service.publish(new Message<any>('test', {}, ListenerPriority.Normal));
+        service.publish(new Message<any>('test', {}, ListenerPriority.Normal));
+        
+        // assert.
+        expect(callsCount).toEqual(1);
+    });
+    
 });

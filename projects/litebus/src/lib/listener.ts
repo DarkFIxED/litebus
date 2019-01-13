@@ -11,7 +11,7 @@ export class Listener {
     public readonly eventTypes: string[];
     public readonly priority: ListenerPriority;
     public readonly subscription: Subscription;
-
+    
     private readonly subject: Subject<Message<any> | SimpleMessage>;
 
     public constructor(eventTypes: string[],

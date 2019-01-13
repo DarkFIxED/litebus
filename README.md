@@ -53,7 +53,25 @@ this.listeners.push(
         })
 );
 ```
-Note: *listen* and *listenAll* methods returns identifier of newly created listener. Use this identifier to cancel listening with *stopListen* method.
+Note: all *listen* methods returns identifier of newly created listener. Use this identifier to cancel listening with *stopListen* method.
+
+Listen messages with name *MessageNames.DomainPlaceAdded* only one time:
+```typescript
+this.listeners.push(
+    this.messageBus.listenOnce([MessageNames.DomainPlaceAdded],
+        (observable: Observable<Message<Place>>) => {
+            return observable.subscribe(message => this.drawPlace(message.payload));
+        })
+);
+```
+Listen all messages only one time:
+```typescript
+this.listeners.push(
+    this.messageBus.listenAllOnce((observable: Observable<Message<Place>>) => {
+            return observable.subscribe(message => this.drawPlace(message.payload));
+        })
+);
+```
 
 Stop listen messages: 
 ```typescript
