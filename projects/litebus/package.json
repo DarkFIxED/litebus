@@ -1,7 +1,7 @@
 {
   "name": "litebus",
   "description": "Lightweight message bus for angular apps",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "readme": "README.md",
   "keywords": [
     "message bus",

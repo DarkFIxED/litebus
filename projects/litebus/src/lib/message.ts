@@ -1,7 +1,7 @@
 export class Message<T> {
     public constructor(public name: string,
-                       public payload: T,
-                       public sender: any = null) {
+                       public payload?: T,
+                       public sender?: any) {
     }
 
     private _isRejected = false;
