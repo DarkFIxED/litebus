@@ -1,7 +1,7 @@
 {
   "name": "litebus",
   "description": "Lightweight message bus for angular apps",
-  "version": "0.2.1",
+  "version": "8.0.0",
   "readme": "README.md",
   "keywords": [
     "message bus",
@@ -20,8 +20,8 @@
   },
   "homepage": "https://github.com/DarkFIxED/litebus#readme",
   "peerDependencies": {
-    "@angular/common": "^6.0.0",
-    "@angular/core": "^6.0.0",
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0",
     "angular2-uuid": "^1.1.1",
     "rxjs": "^6.0.0"
   }
